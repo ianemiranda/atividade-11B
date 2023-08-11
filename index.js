@@ -28,8 +28,6 @@ app.listen(port, () => {            // Um socket para "escutar" as requisições
   console.log(`Serviço escutando na porta:  ${port}`);
 });
 
-
-
 //index.js
 app.get("/usuario/:id", async (req, res) => {
   console.log("Rota GET /usuario solicitada");
