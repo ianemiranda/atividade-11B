@@ -26,5 +26,14 @@ async function selectUsuario(id) {
   return res.rows;
 }
 
+
 //bd.js
-export { selectUsuarios, selectUsuario };
+export { selectUsuarios, selectUsuario, insertUsuario };
+
+//bd.js
+async function insertUsuario(data) {
+  const client = await connect();
+  const query = "INSERT INTO usuario (nome,senha,email) VALUES ($1,$2,$3) ";
+  const usuario = [data.nome, data.senha, data.email];
+  await client.query(query, usuario);
+}
