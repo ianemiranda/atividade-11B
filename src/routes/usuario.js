@@ -8,6 +8,8 @@ import {
   deleteUsuario,
   updateUsuario,
 } from "../db/index.js";
+import verificarAutenticacao from "../middlewares/autenticacao.js";
+
 
 const router = Router();
 
@@ -32,7 +34,7 @@ router.get("/usuario/:id", async (req, res) => {
   }
 });
 
-router.post("/usuario", async (req, res) => {
+router.post("/usuario", verificarAutenticacao, async (req, res) => {
   console.log("Rota POST /usuario solicitada");
   try {
     await insertUsuario(req.body);
@@ -42,7 +44,7 @@ router.post("/usuario", async (req, res) => {
   }
 });
 
-router.put("/usuario", async (req, res) => {
+router.put("/usuario", verificarAutenticacao, async (req, res) => {
   console.log("Rota PUT /usuario solicitada");
   try {
     const usuario = await selectUsuario(req.body.id);
@@ -56,7 +58,7 @@ router.put("/usuario", async (req, res) => {
   }
 });
 
-router.delete("/usuario/:id", async (req, res) => {
+router.delete("/usuario/:id", verificarAutenticacao, async (req, res) => {
   console.log("Rota DELETE /usuario solicitada");
   try {
     await deleteUsuario(req.params.id);
@@ -67,3 +69,4 @@ router.delete("/usuario/:id", async (req, res) => {
 });
 
 export default router;
+

@@ -23,6 +23,11 @@ app.listen(port, () => {
 });
 
 
+app.use(express.urlencoded({ extended: true }));
+
+
+
+
 
 
 
